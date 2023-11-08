@@ -1,14 +1,30 @@
-.character-block
-    .actions
-        = link_to "Edit", edit_character_path(character), class: "btn btn-primary"
-        = link_to "Delete", character_path(character), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
-    .information-block
-        =character.attack_power
-        =character.speed
-        =character.health_points
-        =character.armor_points
-        =character.win_count
-        ="#{character.death_rate}%"
-    .profile-block
-        .profile-picture
-            = image_tag character.profile_picture, class: "character-profile-picture"
+.character-container.horizontal
+    .information-container
+        .stats-container
+            .stat-container.horizontal
+                %span.stat-value= character.health_points
+                %img.stat-icon{src: image_path("health_points.png"), alt: "hp_icon"}
+            .stat-container.horizontal
+                %span.stat-value= character.armor_points
+                %img.stat-icon{src: image_path("armor_points.png"), alt: "armor_icon"}
+            .stat-container.horizontal
+                %span.stat-value= character.attack_power
+                %img.stat-icon{src: image_path("attack_power.png"), alt: "attack_icon"}
+            .stat-container.horizontal
+                %span.stat-value= character.speed
+                %img.stat-icon{src: image_path("speed.png"), alt: "speed_icon"}
+            .stat-container.horizontal
+                %span.stat-value= character.win_count
+                %img.stat-icon{src: image_path("win.png"), alt: "speed_icon"}
+            .stat-container.horizontal
+                %span.stat-value="#{character.death_rate}%"
+                %img.stat-icon{src: image_path("rip.png"), alt: "speed_icon"}
+        .other-container
+            
+        .action-container.vertical
+            = link_to image_tag("delete.png", class: "action-icon"),character_path(character), method: :delete, data: { confirm: "Are you sure?" }
+            = link_to image_tag("edit.png", class: "action-icon"), edit_character_path(character)
+    .profile-container
+        = image_tag character.profile_picture, class: "character-profile-picture"
+        .name-container
+            %span= character.name

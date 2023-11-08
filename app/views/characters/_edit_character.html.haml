@@ -1,4 +1,4 @@
-= form_with(model: Character.new, local: true,class: "new-character-container horizontal") do |form|
+= form_with(model: character, local: true,class: "edit-character-container horizontal") do |form|
   .information-container
     
     .stats-container.new-character-stats
@@ -16,14 +16,12 @@
         %img.stat-icon{src: image_path("speed.png"), alt: "speed_icon"}
     .other-container
       = form.submit "Save"
+      = link_to "Cancel", characters_path, class: "btn btn-danger"
 
   .profile-container
-    = form.file_field :profile_picture, id: "profile-picture-upload", required: true
-    - if form.object.profile_picture.attached?
-      = image_tag form.object.profile_picture, class:"character-profile-picture", id: "preview-image"
-    - else
-      %img#preview-image.character-profile-picture{src: image_path("empty_pp.png"), alt: "Select a profile picture"}
+    = form.file_field :profile_picture, id: "profile-picture-edit"
+    = image_tag form.object.profile_picture, class:"character-profile-picture", id: "preview-edit-image"
     .name-container
       = form.text_field :name, placeholder: "Name", required: true
 
-= javascript_pack_tag 'preview_new_pp'
+= javascript_pack_tag 'preview_edit_pp'
