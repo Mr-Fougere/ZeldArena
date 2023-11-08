@@ -16,7 +16,7 @@
  @import "turbo-rails";
  
  :root{
-    --background-color: #F9F9F9;
+    --background-color: #F5F1EA;
     --border-background: #802626;
     --name-background: #978C8C;
     --stats-background: #564141;
@@ -37,3 +37,4 @@
     flex-direction: column;
  }
 
+ 

@@ -1,8 +1,10 @@
-#profile-picture-upload,#profile-picture-edit {
+#profile-picture-upload,
+#profile-picture-edit {
   display: none;
 }
 
-#preview-image:hover,#preview-edit-image:hover {
+#preview-image:hover,
+#preview-edit-image:hover {
   cursor: pointer;
   opacity: 0.8;
 }
@@ -28,6 +30,7 @@ input[type="number"] {
   width: 5rem;
   height: 5rem;
   border-radius: 0.5rem;
+  background-color: white;
   border: 5px solid var(--character-border);
 }
 
@@ -42,7 +45,7 @@ input[type="number"] {
   height: 1.5rem;
 }
 
-.action-container{
+.action-container {
   position: absolute;
   top: -0.8rem;
   left: -0.8rem;
@@ -73,10 +76,16 @@ input[type="number"] {
   padding-bottom: 1.2rem;
   padding-top: 1.2rem;
   border-bottom: 3px var(--border-background) solid;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .character-container {
   margin-bottom: 0.5rem;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 #characters-list {
