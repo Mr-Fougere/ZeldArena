@@ -102,9 +102,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
   end
 
   create_table "effects", force: :cascade do |t|
+    t.string "name", null: false
     t.integer "affected_stat", default: 0, null: false
-    t.float "value", null: false
-    t.boolean "is_percentage", default: false
+    t.integer "affected_type", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -120,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
   create_table "equipment_effects", force: :cascade do |t|
     t.integer "equipment_id", null: false
     t.integer "effect_id", null: false
+    t.float "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["effect_id"], name: "index_equipment_effects_on_effect_id"

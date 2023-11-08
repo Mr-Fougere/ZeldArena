@@ -5,12 +5,8 @@ class CharactersController < ApplicationController
   end
 
   def create
-    character = Character.new(character_params)
-    if character.save
-      render turbo_stream: [reset_new_character, append_characters(character)]
-    else
-      render :new
-    end
+    character = Character.new(character_params)    
+    render turbo_stream: [reset_new_character, append_characters(character)] if character.save
   end
 
   def destroy
@@ -36,7 +32,7 @@ class CharactersController < ApplicationController
   private
 
   def update_character(character)
-    turbo_stream.update("character-#{character.id}", partial: 'character', locals: { character: character })
+    turbo_stream.replace("character-#{character.id}", partial: 'character', locals: { character: character })
   end
 
   def reset_new_character

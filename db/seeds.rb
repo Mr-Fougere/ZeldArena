@@ -1,8 +1,63 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+Character.create([{ name: 'Link' },
+                  { name: 'Zelda', health_points: 20, speed: 4, attack_power: 1, armor_points: 10 },
+                  { name: 'Ganon', health_points: 20, speed: 2, attack_power: 5, armor_points: 20 },
+                  { name: 'Vaati', health_points: 30, speed: 3, attack_power: 4, armor_points: 0 },
+                  { name: 'Ghirahim', health_points: 15, speed: 4.2, attack_power: 1.5, armor_points: 10 },
+                  { name: 'Fi', health_points: 25, speed: 3.5, attack_power: 2, armor_points: 0 }])
+
+Character.all.each do |character|
+  character.profile_picture.attach(io: File.open("app/assets/images/characters/#{character.name.underscore}.png"),
+                                   filename: "#{character.name.underscore}.png")
+end
+
+Effect.create([{ name: 'Lose HP', affected_stat: 'health_points', affected_type: 'negative' },
+               { name: 'Gain HP', affected_stat: 'health_points', affected_type: 'positive' },
+               { name: 'Lose Attack', affected_stat: 'attack_power', affected_type: 'negative' },
+               { name: 'Gain Attack', affected_stat: 'attack_power', affected_type: 'positive' },
+               { name: 'Lose Speed', affected_stat: 'speed', affected_type: 'negative' },
+               { name: 'Gain Speed', affected_stat: 'speed', affected_type: 'positive' },
+               { name: 'Lose Armor', affected_stat: 'armor_points', affected_type: 'negative' },
+               { name: 'Gain Armor', affected_stat: 'armor_points', affected_type: 'positive' },
+               { name: 'Decrease Critical Rate ', affected_stat: 'critical_hit_rate', affected_type: 'negative' },
+               { name: 'Increase Critical Rate', affected_stat: 'critical_hit_rate', affected_type: 'positive' },
+               { name: 'Decrease Critical Multiplier', affected_stat: 'critical_hit_multiplier',
+                 affected_type: 'negative' },
+               { name: 'Increase Critical Multiplier', affected_stat: 'critical_hit_multiplier',
+                 affected_type: 'positive' },
+               { name: 'Decrease Dodge Rate', affected_stat: 'dodge_rate', affected_type: 'negative' },
+               { name: 'Increase Dodge Rate', affected_stat: 'dodge_rate', affected_type: 'positive' },
+               { name: 'Decrease Miss Rate', affected_stat: 'miss_rate', affected_type: 'negative' },
+               { name: 'Increase Miss Rate', affected_stat: 'miss_rate', affected_type: 'positive' }])
+
+Equipment.create([{ name: 'Hylian Shield', position: 'left_hand' },
+                  { name: 'Mirror Shiel', position: 'left_hand' },
+                  { name: 'Wooden Shield', position: 'left_hand', unlocked: true,
+                    equipment_effects_attributes: [
+                      { effect: Effect.find_by(name: 'Gain Armor'), value: 5 },
+                      { effect: Effect.find_by(name: 'Decrease Miss Rate'), value: 2 }
+                    ] },
+                  { name: 'Deku Shield', position: 'left_hand', unlocked: true,
+                    equipment_effects_attributes: [
+                      { effect: Effect.find_by(name: 'Gain Armor'), value: 5 },
+                      { effect: Effect.find_by(name: 'Increase Critical Rate'), value: 2 }
+                    ] },
+                  { name: 'Gerudo Shield', position: 'left_hand' },
+                  { name: 'Iron Shield', position: 'left_hand' },
+                  { name: 'Sacred Shield', position: 'left_hand' },
+                  { name: 'Master Sword', position: 'right_hand' },
+                  { name: "Smith's Sword", position: 'right_hand', unlocked: true,
+                    equipment_effects_attributes: [
+                      { effect: Effect.find_by(name: 'Gain Attack'), value: 0.5 },
+                      { effect: Effect.find_by(name: 'Increase Critical Multiplier'), value: 0.5 }
+                    ] },
+                  { name: 'Wooden Sword', position: 'right_hand', unlocked: true,
+                    equipment_effects_attributes: [
+                      { effect: Effect.find_by(name: 'Gain Attack'), value: 0.5 },
+                      { effect: Effect.find_by(name: 'Increase Dodge Rate'), value: 5 }
+                    ] },
+                  { name: 'Giant Knife', position: 'right_hand' },
+                  { name: 'Phantom Sword', position: 'right_hand' },
+                  { name: 'Four Sword', position: 'right_hand' },
+                  { name: 'Iron Sword', position: 'right_hand' }])

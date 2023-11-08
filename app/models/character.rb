@@ -9,7 +9,7 @@ class Character < ApplicationRecord
   has_many :battle_characters, dependent: :destroy
   has_many :battles, through: :battle_characters
 
-  validates :name, presence: true, length: { minimum: 4, maximum: 30 }
+  validates :name, presence: true, length: { minimum: 2, maximum: 30 }
   validates :health_points, inclusion: 10..30
   validates :attack_power, inclusion: 0.5..5
   validates :armor_points, inclusion: 0..20
