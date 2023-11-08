@@ -29,6 +29,7 @@ input[type="number"] {
 .character-profile-picture {
   width: 5rem;
   height: 5rem;
+  pointer-events: none;
   border-radius: 0.5rem;
   background-color: white;
   border: 5px solid var(--character-border);
@@ -73,6 +74,7 @@ input[type="number"] {
 .new-character-container {
   justify-content: center;
   margin: 0;
+  -webkit-user-drag: none;
   padding-bottom: 1.2rem;
   padding-top: 1.2rem;
   border-bottom: 3px var(--border-background) solid;

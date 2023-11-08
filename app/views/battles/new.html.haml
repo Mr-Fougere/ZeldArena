@@ -1,6 +1,11 @@
 = turbo_frame_tag "arena" do
-    = form_with(model: Battle.new, local: true,class: "battle-form vertical") do |form|
+    = form_with(model: @battle, local: true,class: "battle-form vertical",data:{target: "drag_drop.arenaForm"}) do |form|
+        = form.fields_for :battle_characters do |bc_form|
+            = bc_form.hidden_field :character_id, value: 1
+            = bc_form.fields_for :battle_character_equipments do |be_form|
+                = be_form.hidden_field :equipment_id, value: 1
+
         .battle-characters.horizontal
-            =render "battle_character", form: form, key: 1
-            =render "battle_character", form: form, key: 2
+            =render "battle_character", key: 1
+            =render "battle_character", key: 2
         = form.submit "Start Battle", class: "start-battle-button"

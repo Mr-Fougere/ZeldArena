@@ -15,6 +15,10 @@
  */
  @import "turbo-rails";
  
+ *{
+   user-select: none;
+ }
+ 
  :root{
     --background-color: #F5F1EA;
     --border-background: #802626;

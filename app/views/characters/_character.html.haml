@@ -25,7 +25,7 @@
             .action-container.vertical
                 = link_to image_tag("delete.png", class: "action-icon"),character_path(character), method: :delete, data: { confirm: "Are you sure?" }
                 = link_to image_tag("edit.png", class: "action-icon"), edit_character_path(character)
-        .profile-container
+        .profile-container{data:{target: 'drag_drop.character', id: character.id, action: 'mousedown->drag_drop#toggleCharacter'}}
             = image_tag character.profile_picture, class: "character-profile-picture"
             .name-container
                 %span= character.name

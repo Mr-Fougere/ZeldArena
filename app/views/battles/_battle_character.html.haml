@@ -1,10 +1,10 @@
 .battle-character.vertical
-    = turbo_frame_tag "character-slot-#{key}", class: "character-slot-block horizontal" do
+    = turbo_frame_tag "character-slot-#{key}", class: "character-slot-block horizontal", data:{target: 'drag_drop.characterSlot',action: 'mouseup->drag_drop.toggleCharacterSlot'} do
         = render "elements/empty_slot", image: "empty_pp", classes: ""
     .equipments-slot-block.horizontal
-        = turbo_frame_tag "equipment-slot-#{key}-L" do
+        = turbo_frame_tag "equipment-slot-#{key}-L", data:{target: 'drag_drop.equipmenSlot'} do
             = render "elements/empty_slot", image: "hand", classes: "reverse"
-        = turbo_frame_tag "equipment-slot-#{key}-R" do
+        = turbo_frame_tag "equipment-slot-#{key}-R", data:{target: 'drag_drop.equipmenSlot'} do
             = render "elements/empty_slot", image: "hand", classes: ""
     = turbo_frame_tag "stats-#{key}", class:"stats-block" do
         = render "elements/empty_stats"
