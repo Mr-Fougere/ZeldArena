@@ -1,9 +1,11 @@
 .battle-character.vertical
-    .character-slot-block.horizontal
+    = turbo_frame_tag "character-slot-#{key}", class: "character-slot-block horizontal" do
         = render "elements/empty_slot", image: "empty_pp", classes: ""
     .equipments-slot-block.horizontal
-        = render "elements/empty_slot", image: "hand", classes: "reverse"
-        = render "elements/empty_slot", image: "hand", classes: ""
-    .stats-block
+        = turbo_frame_tag "equipment-slot-#{key}-L" do
+            = render "elements/empty_slot", image: "hand", classes: "reverse"
+        = turbo_frame_tag "equipment-slot-#{key}-R" do
+            = render "elements/empty_slot", image: "hand", classes: ""
+    = turbo_frame_tag "stats-#{key}", class:"stats-block" do
         = render "elements/empty_stats"
 
