@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_08_080425) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_08_084125) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_080425) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "battle_character_equipments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "battle_characters", force: :cascade do |t|
+    t.float "current_health_points", null: false
+    t.float "current_attack_power", null: false
+    t.float "current_armor_points", null: false
+    t.float "current_speed", null: false
+    t.float "critical_hit_rate", null: false
+    t.float "dodge_rate", null: false
+    t.float "miss_rate", null: false
+    t.float "critical_multiplier", null: false
+    t.integer "character_id", null: false
+    t.integer "battle_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_id"], name: "index_battle_characters_on_battle_id"
+    t.index ["character_id"], name: "index_battle_characters_on_character_id"
+  end
+
   create_table "battles", force: :cascade do |t|
     t.integer "status", default: 0
     t.integer "winner_character_id"
@@ -62,7 +84,36 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_080425) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "effects", force: :cascade do |t|
+    t.integer "affected_stat", default: 0, null: false
+    t.float "value", null: false
+    t.boolean "is_percentage", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.boolean "unlocked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "equipment_effects", force: :cascade do |t|
+    t.integer "equipment_id", null: false
+    t.integer "effect_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["effect_id"], name: "index_equipment_effects_on_effect_id"
+    t.index ["equipment_id"], name: "index_equipment_effects_on_equipment_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "battle_characters", "battles"
+  add_foreign_key "battle_characters", "characters"
   add_foreign_key "battles", "characters", column: "winner_character_id"
+  add_foreign_key "equipment_effects", "effects"
+  add_foreign_key "equipment_effects", "equipment"
 end
