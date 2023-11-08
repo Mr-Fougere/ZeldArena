@@ -1,0 +1,61 @@
+#arena {
+  height: 100%;
+}
+
+.battle-form {
+  height: 100%;
+  align-items: center;
+}
+
+.battle-characters {
+  height: 100%;
+  width: 100%;
+}
+
+.battle-character {
+  height: 100%;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-slot-block {
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.equipments-slot-block {
+  justify-content: space-evenly;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.stats-block {
+  display: grid;
+  width: 90%;
+  border-radius: 0.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: var(--stats-background);
+  border: 3px solid var(--character-border);
+  padding: 0.5rem;
+
+  .stat-container {
+    justify-content: end;
+  }
+}
+
+.start-battle-button {
+  height: 3rem;
+  margin: 1rem;
+  margin-top: 1rem;
+  margin-top: 0;
+  background-color: var(--border-background);
+  border-radius: 1rem;
+  color: white;
+  font-size: larger;
+  width: min-content;
+  padding-inline: 4rem;
+  pointer-events: none;
+  opacity: 0.5;
+}

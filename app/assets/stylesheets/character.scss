@@ -84,6 +84,7 @@ input[type="number"] {
 .character-container {
   margin-bottom: 0.5rem;
   &:hover {
+    cursor: pointer;
     transform: scale(1.02);
   }
 }
@@ -108,7 +109,7 @@ input[type="number"] {
   border-bottom-left-radius: 0.5rem;
   .stats-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 0.8fr);
     grid-template-rows: repeat(2, 1fr);
     column-gap: 0.2rem;
     row-gap: 0.2rem;

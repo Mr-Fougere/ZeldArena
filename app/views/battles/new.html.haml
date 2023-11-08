@@ -1,0 +1,6 @@
+= turbo_frame_tag "arena" do
+    = form_with(model: Battle.new, local: true,class: "battle-form vertical") do |form|
+        .battle-characters.horizontal
+            =render "battle_character", form: form
+            =render "battle_character", form: form
+        = form.submit "Start Battle", class: "start-battle-button"

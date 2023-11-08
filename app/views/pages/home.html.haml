@@ -7,11 +7,11 @@
   .middle.vertical
     .middle-upside.vertical
       = render 'elements/logo'
-      = render 'partials/arena'
+      = turbo_frame_tag "arena", src: new_battle_path, loading: "lazy"
     .middle-downside.vertical
       = render 'elements/title', title: "Equipments"
       = turbo_frame_tag "equipments-list", src: equipments_path, loading: "lazy"
   .right.side.vertical
     = render 'elements/title', title: "Battle History"
-    = render 'partials/battle_history'
+    //= turbo_frame_tag "arena", src: new_battle_path, loading: "lazy"
   
