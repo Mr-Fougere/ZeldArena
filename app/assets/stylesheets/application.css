@@ -13,3 +13,27 @@
  *= require_tree .
  *= require_self
  */
+ @import "turbo-rails";
+ 
+ :root{
+    --background-color: #F9F9F9;
+    --border-background: #802626
+ }
+
+ body{
+    margin: 0
+ }
+
+ .horizontal{
+    display: flex;
+    flex-direction: row;
+ }
+
+ .vertical{
+    display: flex;
+    flex-direction: column;
+ }
+
+ input[type="number"] {
+   -moz-appearance: textfield;
+}

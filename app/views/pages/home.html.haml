@@ -1,0 +1,16 @@
+.home.horizontal
+  .left.side.vertical
+    = render 'elements/title', title: "Characters"
+    = turbo_frame_tag "new-character" do
+      = render 'characters/new_character'
+    = turbo_frame_tag "characters-list", src: characters_path, loading: "lazy"
+  .middle.vertical
+    .middle-upside.vertical
+      = render 'partials/arena'
+    .middle-downside.vertical
+      = render 'elements/title', title: "Equipments"
+      = render 'partials/equipments'
+  .right.side.vertical
+    = render 'elements/title', title: "Battle History"
+    = render 'partials/battle_history'
+  

@@ -1,0 +1,4 @@
+= turbo_frame_tag "characters-list" do
+    -@characters.map do |character|
+        = turbo_frame_tag "character-#{character.id}" do
+            =render "character", character: character

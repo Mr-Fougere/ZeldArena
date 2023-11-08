@@ -1,0 +1,15 @@
+.character-block
+    .actions
+        = link_to "Edit", edit_character_path(character), class: "btn btn-primary"
+        = link_to "Delete", character_path(character), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+    .information-block
+        =character.attack_power
+        =character.speed
+        =character.health_points
+        =character.armor_points
+        =character.win_count
+        =character.death_rate
+        =render 'progress_bar', character_progress: character.progress
+    .profile-block
+        .profile-picture
+            = image_tag character.profile_picture, class: "character-profile-picture"

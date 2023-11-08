@@ -1,0 +1,8 @@
+= form_with(model: Character.new, local: true) do |form|
+  = form.number_field :health_points, in: 10.0..30.0, step: 1 , placeholder: "Health Points",required: true
+  = form.number_field :armor_points, in: 0.0..20.0, step: 1 , placeholder: "Armor Points",required: true
+  = form.number_field :attack_power, in: 0.5..5.00, step: 0.1 , placeholder: "Attack Power",required: true
+  = form.number_field :speed, in: 0.5..5.00, step: 0.1 , placeholder: "Speed",required: true
+  = form.file_field :profile_picture,required: true
+  = form.text_field :name,required: true
+  = form.submit "Save"
