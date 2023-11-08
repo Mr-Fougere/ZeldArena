@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_08_084125) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,9 +39,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_084125) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "battle_character_equipments", force: :cascade do |t|
+  create_table "battle_actions", force: :cascade do |t|
+    t.float "damage", default: 0.0, null: false
+    t.integer "result", default: 0, null: false
+    t.integer "battle_id", null: false
+    t.integer "attacker_id", null: false
+    t.integer "defender_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["attacker_id"], name: "index_battle_actions_on_attacker_id"
+    t.index ["battle_id"], name: "index_battle_actions_on_battle_id"
+    t.index ["defender_id"], name: "index_battle_actions_on_defender_id"
+  end
+
+  create_table "battle_character_equipments", force: :cascade do |t|
+    t.integer "battle_character_id", null: false
+    t.integer "equipment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_character_id"], name: "index_battle_character_equipments_on_battle_character_id"
+    t.index ["equipment_id"], name: "index_battle_character_equipments_on_equipment_id"
   end
 
   create_table "battle_characters", force: :cascade do |t|
@@ -111,6 +128,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_084125) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "battle_actions", "battle_characters", column: "attacker_id"
+  add_foreign_key "battle_actions", "battle_characters", column: "defender_id"
+  add_foreign_key "battle_actions", "battles"
+  add_foreign_key "battle_character_equipments", "battle_characters"
+  add_foreign_key "battle_character_equipments", "equipment"
   add_foreign_key "battle_characters", "battles"
   add_foreign_key "battle_characters", "characters"
   add_foreign_key "battles", "characters", column: "winner_character_id"
