@@ -8,4 +8,6 @@ class BattleCharacter < ApplicationRecord
                             dependent: :destroy
   has_many :defense_actions, class_name: 'BattleAction', foreign_key: 'defender_id', inverse_of: :defender,
                              dependent: :destroy
+
+  accepts_nested_attributes_for :battle_character_equipments, allow_destroy: true
 end

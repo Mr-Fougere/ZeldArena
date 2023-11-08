@@ -1,5 +1,5 @@
 = turbo_frame_tag "equipment-#{equipment.id}" do
-    .equipment-container
+    .equipment-container{class: "#{equipment.unlocked? ? "un" : ""}locked"}
         - if equipment.image.attached? 
             = image_tag equipment.image, class: "equipment-image"
         - else

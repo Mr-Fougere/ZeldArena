@@ -5,6 +5,12 @@
   height: 5rem;
   border-radius: 0.5rem;
   cursor: pointer;
+
+  &.locked{
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
   &:hover .equipment-image {
     opacity: 0.2;
   }

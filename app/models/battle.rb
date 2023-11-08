@@ -3,4 +3,6 @@ class Battle < ApplicationRecord
   
   belongs_to :winner_character, class_name: 'Character', optional: true, inverse_of: :battles_won
   has_many :battle_characters, dependent: :destroy
+
+  accepts_nested_attributes_for :battle_characters, allow_destroy: true
 end
