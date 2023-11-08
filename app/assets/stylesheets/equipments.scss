@@ -1,0 +1,80 @@
+.equipment-container {
+  position: relative;
+  border: 5px solid var(--character-border);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  &:hover .equipment-image {
+    opacity: 0.2;
+  }
+  &:hover .effects-container {
+    display: flex !important;
+  }
+
+  .name-container {
+    position: absolute;
+    background-color: var(--name-background);
+    bottom: 0;
+    height: 1.2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
+    span {
+      width: 13ch;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      text-align: center;
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      background-color: transparent;
+    }
+  }
+}
+
+.equipment-image {
+  width: 100%;
+  height: 100%;
+}
+
+.effects-container {
+  display: none !important;
+  position: absolute;
+  right: 0;
+  top: 0.5rem;
+  z-index: 2;
+}
+
+.effect-container {
+  align-self: end;
+}
+
+.effect-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#equipments-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 0.2rem;
+  row-gap: 0.5rem;
+  overflow-y: scroll;
+  padding: 0.2rem;
+}
+
+.hand-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  &.left {
+    transform: scaleX(-1);
+  }
+}

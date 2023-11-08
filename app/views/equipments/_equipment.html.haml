@@ -1,0 +1,14 @@
+= turbo_frame_tag "equipment-#{equipment.id}" do
+    .equipment-container
+        - if equipment.image.attached? 
+            = image_tag equipment.image, class: "equipment-image"
+        - else
+            = image_tag "not_found.png", class: "equipment-image"
+        = image_tag "hand.png", class: "hand-icon #{equipment.left_hand? ? 'left' : 'right'}"
+        .name-container
+            %span= equipment.name
+        .effects-container.vertical
+            - equipment.equipment_effects.each do |equipment_effect|
+                .effect-container.horizontal
+                    %span.effect-value="#{equipment_effect.effect.positive? ? '+' : '-'} #{equipment_effect.value} #{equipment_effect.effect.percent? ? '%' : ''}"
+                    %img.effect-icon{src: image_path("#{equipment_effect.effect.affected_stat}.png"), alt: "speed_icon"}

@@ -10,7 +10,7 @@
       = render 'partials/arena'
     .middle-downside.vertical
       = render 'elements/title', title: "Equipments"
-      = render 'partials/equipments'
+      = turbo_frame_tag "equipments-list", src: equipments_path, loading: "lazy"
   .right.side.vertical
     = render 'elements/title', title: "Battle History"
     = render 'partials/battle_history'

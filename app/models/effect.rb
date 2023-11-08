@@ -5,4 +5,8 @@ class Effect < ApplicationRecord
   enum affected_type: { negative: 0, positive: 1 }
 
   has_many :equipment_effects, dependent: :destroy
+
+  def percent?
+    affected_stat.in? %w[critical_hit_rate dodge_rate miss_rate]
+  end
 end
