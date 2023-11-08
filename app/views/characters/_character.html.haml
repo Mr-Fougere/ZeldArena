@@ -8,8 +8,7 @@
         =character.health_points
         =character.armor_points
         =character.win_count
-        =character.death_rate
-        =render 'progress_bar', character_progress: character.progress
+        ="#{character.death_rate}%"
     .profile-block
         .profile-picture
             = image_tag character.profile_picture, class: "character-profile-picture"

@@ -4,7 +4,10 @@ class Character < ApplicationRecord
   GROWTH_FACTOR = 1.5
 
   has_one_attached :profile_picture
-  has_many :battles_won, class_name: 'Battle', foreign_key: 'winner_character_id', dependent: :nullify, inverse_of: :winner_character
+  has_many :battles_won, class_name: 'Battle', foreign_key: 'winner_character_id', dependent: :nullify,
+                         inverse_of: :winner_character
+  has_many :battle_characters, dependent: :destroy
+  has_many :battles, through: :battle_characters
 
   validates :name, presence: true, length: { minimum: 4, maximum: 30 }
   validates :health_points, inclusion: 10..30
@@ -16,11 +19,11 @@ class Character < ApplicationRecord
   scope :balanced, -> { filter { |character| character.character_balance == :balanced } }
 
   def death_rate
-    0.0
+    battles.count.zero? ? 0 : battles_won.count.to_f / battles.count
   end
 
   def win_count
-    0.0
+    battles_won.count
   end
 
   def average_damage_per_second
@@ -37,5 +40,4 @@ class Character < ApplicationRecord
       :balanced
     end
   end
-
 end
