@@ -12,6 +12,8 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.float :dodge_rate, default: 5.0
       t.float :miss_rate, default: 5.0
       t.integer :experience_points, default: 0
+      t.integer :level, default: 1
+      t.integer :next_level, default: 10
       
       t.timestamps
     end

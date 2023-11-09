@@ -60,7 +60,7 @@ Equipment.create([{ name: 'Hylian Shield', position: 'left_hand' },
                   { name: 'Giant Knife', position: 'right_hand' },
                   { name: 'Kokiri Sword', position: 'right_hand' },
                   { name: 'Phantom Sword', position: 'right_hand' },
-                  { name: 'Sacred Sword', position: 'right_hand' }])
+                  { name: 'Four Sword', position: 'right_hand' }])
 p "Equipment created"
 p 'Image assocation ...'
 

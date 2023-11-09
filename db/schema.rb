@@ -99,6 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
     t.float "dodge_rate", default: 5.0
     t.float "miss_rate", default: 5.0
     t.integer "experience_points", default: 0
+    t.integer "level", default: 1
+    t.integer "next_level", default: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

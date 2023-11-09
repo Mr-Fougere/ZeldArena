@@ -3,6 +3,11 @@
   display: none;
 }
 
+#preview-image,
+#preview-edit-image {
+  pointer-events: all !important;
+}
+
 #preview-image:hover,
 #preview-edit-image:hover {
   cursor: pointer;

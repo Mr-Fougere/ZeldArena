@@ -18,7 +18,7 @@ class Character < ApplicationRecord
   scope :balanced, -> { filter { |character| character.character_balance == :balanced } }
 
   def death_rate
-    battles.empty? ? 0 : battles_won.size / battles.size
+    battles.empty? ? 0 : ((1- win_count.to_f / battles.uniq.count ).round(2) * 100).to_i
   end
 
   def win_count
@@ -26,7 +26,7 @@ class Character < ApplicationRecord
   end
 
   def battles_won
-    battles.joins(:winner_battle_character).where(battle_characters: { character_id: id })
+    battles.where(winner_battle_character_id: battle_characters.pluck(:id)).uniq
   end
 
   def character_balance
@@ -39,4 +39,5 @@ class Character < ApplicationRecord
       :balanced
     end
   end
+
 end

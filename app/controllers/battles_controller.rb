@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class BattlesController < ApplicationController
   def index
-    @battles = Battle.finished
+    @battles = Battle.finished.order(created_at: :desc)
   end
 
   def new
@@ -15,7 +15,7 @@ class BattlesController < ApplicationController
   def create
     battle = Battle.new(battle_params)
     BattleSimulator.new(battle: battle).perform if battle.save
-    render turbo_stream: add_battle_to_battle_history(battle)
+    render turbo_stream: [add_battle_to_battle_history(battle), update_character_profiles(battle)].flatten
   end
 
   def update_ui
@@ -31,6 +31,20 @@ class BattlesController < ApplicationController
 
   def add_battle_to_battle_history(battle)
     turbo_stream.prepend('battle-history', partial: 'battles/battle', locals: { battle: battle })
+  end
+
+  def recap_battle(battle)
+    turbo_stream.prepend('battle-history', partial: 'battles/battle', locals: { battle: battle })
+  end
+
+  def update_character_profiles(battle)
+    battle.battle_characters.map do |character|
+      update_character_profile(character.character)
+    end
+  end
+
+  def update_character_profile(character)
+    turbo_stream.replace("character-#{character.id}", partial: 'characters/character', locals: { character: character })
   end
 
   def update_slot(turbo_frame_id, value)
