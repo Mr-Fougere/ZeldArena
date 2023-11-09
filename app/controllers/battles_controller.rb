@@ -15,6 +15,7 @@ class BattlesController < ApplicationController
   def create
     battle = Battle.new(battle_params)
     BattleSimulator.new(battle: battle).perform if battle.save
+    render turbo_stream: add_battle_to_battle_history(battle)
   end
 
   def update_ui
@@ -28,8 +29,8 @@ class BattlesController < ApplicationController
                                                                          { battle_character_equipments_attributes: %i[id equipment_id] }])
   end
 
-  def append_battle_history
-  
+  def add_battle_to_battle_history(battle)
+    turbo_stream.prepend('battle-history', partial: 'battles/battle', locals: { battle: battle })
   end
 
   def update_slot(turbo_frame_id, value)

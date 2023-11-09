@@ -7,7 +7,6 @@ class Character < ApplicationRecord
 
   has_many :battle_characters, dependent: :destroy
   has_many :battles, through: :battle_characters
-  has_many :battles_won, through: :battle_characters, source: :battle, inverse_of: :winner_battle_character
 
   validates :name, presence: true, length: { minimum: 2, maximum: 30 }
   validates :health_points, inclusion: 10..30
@@ -19,11 +18,15 @@ class Character < ApplicationRecord
   scope :balanced, -> { filter { |character| character.character_balance == :balanced } }
 
   def death_rate
-    battles.count.zero? ? 0 : battles_won.count.to_f / battles.count
+    battles.empty? ? 0 : battles_won.size / battles.size
   end
 
   def win_count
     battles_won.count
+  end
+
+  def battles_won
+    battles.where(winner_battle_character: { character_id: id }).count
   end
 
   def character_balance

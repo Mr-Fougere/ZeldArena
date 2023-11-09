@@ -10,11 +10,29 @@
     position: relative;
   }
 
-  .versus-icon{
+  .battle-character-container {
+    position: relative;
+  }
+
+  .versus-icon {
     position: absolute;
     width: 3rem;
     height: 3rem;
     align-self: center;
   }
-  
+
+  .winner-icon {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    z-index: 2;
+    top: -1rem;
+    left: calc(50% - 1rem);
+  }
+
+  .winner{
+    .filled-slot{
+        border-color: var(--winner-color)
+    }
+  }
 }

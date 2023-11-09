@@ -8,8 +8,8 @@ class BattleCharacter < ApplicationRecord
   has_many :battle_character_equipments, dependent: :destroy
   has_many :equipments, through: :battle_character_equipments
   has_many :equipment_effects, through: :equipments
-  has_many :battles_won, class_name: 'Battle', foreign_key: 'winner_battle_character_id',
-                         inverse_of: :winner_battle_character, dependent: :destroy
+  has_one :battle_won, class_name: 'Battle', foreign_key: 'winner_battle_character_id',
+                       inverse_of: :winner_battle_character, dependent: :destroy
   has_many :attack_actions, class_name: 'BattleAction', foreign_key: 'attacker_id', inverse_of: :attacker,
                             dependent: :destroy
   has_many :defense_actions, class_name: 'BattleAction', foreign_key: 'defender_id', inverse_of: :defender,
