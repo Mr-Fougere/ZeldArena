@@ -1,0 +1,4 @@
+.battle-container.horizontal
+  - battle.battle_characters.each do |battle_character|
+    = render "elements/filled_slot" , data: battle_character.character
+  = image_tag "background/versus.png", class: "versus-icon"

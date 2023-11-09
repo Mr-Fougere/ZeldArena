@@ -24,7 +24,8 @@
     --border-background: #802626;
     --name-background: #978C8C;
     --stats-background: #564141;
-    --character-border: #4B0909
+    --character-border: #4B0909;
+    --winner-color: #F6AE24;
  }
 
  body{

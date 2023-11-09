@@ -28,6 +28,10 @@ class BattlesController < ApplicationController
                                                                          { battle_character_equipments_attributes: %i[id equipment_id] }])
   end
 
+  def append_battle_history
+  
+  end
+
   def update_slot(turbo_frame_id, value)
     slot_type = turbo_frame_id.split('-').first
     data = find_data(slot_type, value)

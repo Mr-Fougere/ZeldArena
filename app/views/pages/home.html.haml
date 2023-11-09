@@ -13,4 +13,4 @@
       = turbo_frame_tag "equipments-list", src: equipments_path, loading: "lazy"
   .right.side.vertical
     = render 'elements/title', title: "Battle History"
-    //= turbo_frame_tag "arena", src: new_battle_path, loading: "lazy"
+    = turbo_frame_tag "battle-history", src: battles_path, loading: "lazy"

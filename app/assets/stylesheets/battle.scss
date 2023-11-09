@@ -1,13 +1,20 @@
 #arena {
   height: 100%;
+
+  .filled-slot {
+    cursor: pointer;
+    &:hover {
+      border: 3px solid var(--name-background);
+    }
+  }
 }
 
-.versus{
+.versus {
   position: absolute;
   width: 5rem;
   height: 5rem;
   right: calc(50% - 2.5rem);
-  top: 2.5rem
+  top: 2.5rem;
 }
 
 .battle-form {
@@ -67,15 +74,13 @@
   width: min-content;
   padding-inline: 4rem;
   opacity: 0.5;
-  &:not(:disabled){
+  &:not(:disabled) {
     opacity: 1;
     &:hover {
       background-color: white;
       color: var(--border-background);
       transform: scale(1.02);
       border: 2px solid var(--border-background);
-    };
+    }
   }
-  
-  
 }

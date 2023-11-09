@@ -32,11 +32,6 @@
   width: 5rem;
   height: 5rem;
   border-radius: 0.5rem;
-  cursor: pointer;
-  &:hover{
-    border: 3px solid var(--name-background);
-
-  }
   .name-container {
     position: absolute;
     background-color: var(--name-background);
