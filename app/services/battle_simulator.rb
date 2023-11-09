@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 class BattleSimulator
-  def initialize(battle: Battle)
+  def initialize(battle:)
+    raise TypeError unless battle.is_a?(Battle)
+
     @battle = battle
   end
 

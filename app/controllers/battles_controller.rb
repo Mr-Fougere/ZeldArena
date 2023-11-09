@@ -14,11 +14,7 @@ class BattlesController < ApplicationController
 
   def create
     battle = Battle.new(battle_params)
-    if battle.save
-      BattleSimulator.new(battle: battle).launch
-    else
-      render :new
-    end
+    BattleSimulator.new(battle: battle).perform if battle.save
   end
 
   def update_ui
@@ -39,7 +35,6 @@ class BattlesController < ApplicationController
     return turbo_stream.update(turbo_frame_id, partial: 'elements/filled_slot', locals: { data: data }) if data
 
     empty_image = find_image(slot_type)
-    p turbo_frame_id[-1]
     classes = turbo_frame_id[-1] == 'L' ? 'reverse' : ''
     turbo_stream.update(turbo_frame_id, partial: 'elements/empty_slot',
                                         locals: { classes: classes, image: empty_image })
