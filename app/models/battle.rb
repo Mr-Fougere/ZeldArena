@@ -3,6 +3,11 @@ class Battle < ApplicationRecord
   
   belongs_to :winner_battle_character, class_name: 'BattleCharacter', optional: true, inverse_of: :battles_won
   has_many :battle_characters, dependent: :destroy
-
+  has_many :battle_actions, dependent: :destroy
+  
   accepts_nested_attributes_for :battle_characters, allow_destroy: true
+
+  def winner_update
+    update(winner_battle_character: battle_actions.last.attacker)
+  end
 end

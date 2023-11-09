@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
   create_table "battle_actions", force: :cascade do |t|
     t.float "damage", default: 0.0, null: false
     t.integer "result", default: 0, null: false
+    t.integer "tick", null: false
     t.integer "battle_id", null: false
     t.integer "attacker_id", null: false
     t.integer "defender_id", null: false

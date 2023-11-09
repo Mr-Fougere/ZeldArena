@@ -26,10 +26,6 @@ class Character < ApplicationRecord
     battles_won.count
   end
 
-  def average_damage_per_second
-    attack_power / speed
-  end
-
   def character_balance
     total_stat = health_points + attack_power + armor_points + speed
     if total_stat > 35 && average_damage_per_second > 1.0
