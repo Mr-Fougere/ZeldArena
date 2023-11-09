@@ -26,7 +26,7 @@ class Character < ApplicationRecord
   end
 
   def battles_won
-    battles.where(winner_battle_character: { character_id: id }).count
+    battles.joins(:winner_battle_character).where(battle_characters: { character_id: id })
   end
 
   def character_balance
