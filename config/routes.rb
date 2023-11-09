@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :characters
   resources :equipments
   resources :battles
+
+  post 'arena/update_ui', to: 'battles#update_ui'
 end

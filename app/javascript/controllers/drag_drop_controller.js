@@ -1,4 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
+import { Turbo } from "@hotwired/turbo-rails";
+import Rails from "@rails/ujs";
 
 export default class extends Controller {
   static targets = [
@@ -51,17 +53,32 @@ export default class extends Controller {
       return;
     if (targetInput.value == this.lastElementId) {
       targetInput.value = "";
+      this.updateUI(turboFrameSlot.id, "");
       return;
     }
 
     targetInput.value = this.lastElementId;
-    
+
+    this.updateUI(turboFrameSlot.id, targetInput.value);
+
     turboFrameSlot.addEventListener("click", () => {
       targetInput.value = "";
-      this.checkArenaFormValid()
-    })
-    
-    this.checkArenaFormValid()
+      this.updateUI(turboFrameSlot.id, "");
+      this.checkArenaFormValid();
+    });
+
+    this.checkArenaFormValid();
+  }
+
+  updateUI(turboFrameId, value) {
+    Rails.ajax({
+      type: "POST",
+      url: "/arena/update_ui",
+      data: `turbo_frame_id=${turboFrameId}&value=${value}`,
+      success: (data) => {
+        Turbo.renderStreamMessage(data);
+      },
+    });
   }
 
   enableSubmitButton() {
@@ -105,9 +122,9 @@ export default class extends Controller {
     }
     if (isValid) {
       this.enableSubmitButton();
-    }else{
+    } else {
       this.disableSubmitButton();
-    }    
+    }
   }
 
   toggleCharacter(event) {
@@ -157,7 +174,6 @@ export default class extends Controller {
       this.duplicatedElement.style.top = top + "px";
     }
   }
-
   removeDuplicateElement() {
     if (this.duplicatedElement) {
       this.duplicatedElement.remove();

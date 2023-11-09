@@ -1,0 +1,10 @@
+.filled-slot
+    - if data.class.name == "Character"
+        - source_image = data.profile_picture
+    - elsif data.class.name == "Equipment"
+        - source_image = data.image
+        = image_tag "hand.png", class: "hand-icon #{data.left_hand? ? 'left' : 'right'}"
+    - source_image = "not_found.png" unless source_image.attached?
+    = image_tag source_image, class: "image-slot"
+    .name-container
+        %span= data.name

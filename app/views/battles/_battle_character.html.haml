@@ -6,6 +6,6 @@
             = render "elements/empty_slot", image: "hand", classes: "reverse"
         = turbo_frame_tag "equipment-slot-#{key}-R", data:{target: 'drag_drop.equipmenSlot',slot: "#{key}R"} do
             = render "elements/empty_slot", image: "hand", classes: ""
-    = turbo_frame_tag "stats-#{key}", class:"stats-block" do
-        = render "elements/empty_stats"
+    //= turbo_frame_tag "stats-#{key}", class:"stats-block" do
+    //    = render "elements/empty_stats"
 
