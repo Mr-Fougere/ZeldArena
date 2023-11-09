@@ -2,6 +2,14 @@
   height: 100%;
 }
 
+.versus{
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  right: calc(50% - 2.5rem);
+  top: 2.5rem
+}
+
 .battle-form {
   height: 100%;
   align-items: center;
@@ -10,13 +18,15 @@
 .battle-characters {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .battle-character {
   height: 100%;
   width: 50%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-top: 2.5rem;
 }
 
 .character-slot-block {
@@ -56,6 +66,16 @@
   font-size: larger;
   width: min-content;
   padding-inline: 4rem;
-  pointer-events: none;
   opacity: 0.5;
+  &:not(:disabled){
+    opacity: 1;
+    &:hover {
+      background-color: white;
+      color: var(--border-background);
+      transform: scale(1.02);
+      border: 2px solid var(--border-background);
+    };
+  }
+  
+  
 }

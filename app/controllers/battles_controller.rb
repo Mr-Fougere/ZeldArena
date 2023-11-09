@@ -13,7 +13,12 @@ class BattlesController < ApplicationController
   end
 
   def create
-    p params
+    battle = Battle.new(battle_params)
+    if battle.save
+      BattleSimulator.new(battle: battle).launch
+    else
+      render :new
+    end
   end
 
   private
@@ -22,4 +27,5 @@ class BattlesController < ApplicationController
     params.require(:battle).permit(:name, battle_characters_attributes: [:id, :character_id,
                                                                          { battle_character_equipments_attributes: %i[id equipment_id] }])
   end
+
 end

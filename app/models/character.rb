@@ -4,10 +4,10 @@ class Character < ApplicationRecord
   GROWTH_FACTOR = 1.5
 
   has_one_attached :profile_picture
-  has_many :battles_won, class_name: 'Battle', foreign_key: 'winner_character_id', dependent: :nullify,
-                         inverse_of: :winner_character
+
   has_many :battle_characters, dependent: :destroy
   has_many :battles, through: :battle_characters
+  has_many :battles_won, through: :battle_characters, source: :battle, inverse_of: :winner_battle_character
 
   validates :name, presence: true, length: { minimum: 2, maximum: 30 }
   validates :health_points, inclusion: 10..30

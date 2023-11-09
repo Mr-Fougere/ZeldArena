@@ -62,14 +62,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
   end
 
   create_table "battle_characters", force: :cascade do |t|
-    t.float "current_health_points", null: false
-    t.float "current_attack_power", null: false
-    t.float "current_armor_points", null: false
-    t.float "current_speed", null: false
-    t.float "critical_hit_rate", null: false
+    t.float "health_points", null: false
+    t.float "attack_power", null: false
+    t.float "armor_points", null: false
+    t.float "speed", null: false
     t.float "dodge_rate", null: false
     t.float "miss_rate", null: false
-    t.float "critical_multiplier", null: false
+    t.float "critical_hit_rate", null: false
+    t.float "critical_hit_multiplier", null: false
     t.integer "character_id", null: false
     t.integer "battle_id", null: false
     t.datetime "created_at", null: false
@@ -80,10 +80,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
 
   create_table "battles", force: :cascade do |t|
     t.integer "status", default: 0
-    t.integer "winner_character_id"
+    t.integer "winner_battle_character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["winner_character_id"], name: "index_battles_on_winner_character_id"
+    t.index ["winner_battle_character_id"], name: "index_battles_on_winner_battle_character_id"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -92,8 +92,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
     t.float "attack_power", default: 2.5
     t.float "armor_points", default: 0.0
     t.float "speed", default: 2.5
-    t.float "critical_rate", default: 5.0
-    t.float "critical_multiplier", default: 1.5
+    t.float "critical_hit_rate", default: 5.0
+    t.float "critical_hit_multiplier", default: 1.5
     t.float "dodge_rate", default: 5.0
     t.float "miss_rate", default: 5.0
     t.integer "experience_points", default: 0
@@ -136,7 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
   add_foreign_key "battle_character_equipments", "equipment"
   add_foreign_key "battle_characters", "battles"
   add_foreign_key "battle_characters", "characters"
-  add_foreign_key "battles", "characters", column: "winner_character_id"
+  add_foreign_key "battles", "battle_characters", column: "winner_battle_character_id"
   add_foreign_key "equipment_effects", "effects"
   add_foreign_key "equipment_effects", "equipment"
 end

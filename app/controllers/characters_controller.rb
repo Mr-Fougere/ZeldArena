@@ -5,7 +5,7 @@ class CharactersController < ApplicationController
   end
 
   def create
-    character = Character.new(character_params)    
+    character = Character.new(character_params)
     render turbo_stream: [reset_new_character, append_characters(character)] if character.save
   end
 
