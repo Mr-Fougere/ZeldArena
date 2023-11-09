@@ -29,6 +29,11 @@
     --winner-border: #A4700C;
     --performance-border: #193053;
     --performance-background: #154756;
+    --battle-history-background: #D7D7D6;
+    --battle-history-border: black;
+    --equipment-background: #EFFDEE;
+    --equipment-border: #052802;
+
  }
 
  body{

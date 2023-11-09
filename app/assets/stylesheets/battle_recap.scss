@@ -1,10 +1,10 @@
-.equipments-container{
+.equipments-container {
   margin-top: 1rem;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
-.battle-recap{
+.battle-recap {
   height: 100%;
 }
 
@@ -16,6 +16,7 @@
   border: 3px solid var(--performance-border);
   padding: 0.5rem;
   margin-top: 1rem;
+  grid-gap: 0.5rem;
 
   .performance-container {
     grid-column: auto;
@@ -26,11 +27,12 @@
     width: 4rem;
 
     .performance-value {
-      text-align: end;
       border: none;
       outline: none;
       box-shadow: none;
       font-weight: 700;
+      padding-right: 0.2rem;
+      text-align: end;
     }
   }
 
@@ -41,7 +43,7 @@
     object-fit: contain;
   }
 
-  .filled-slot{
+  .filled-slot {
     pointer-events: none;
   }
 }
@@ -78,7 +80,7 @@
     opacity: 0.6;
   }
 }
-.battle-actions{
+.battle-actions {
   height: 100%;
   display: flex;
   justify-content: center;

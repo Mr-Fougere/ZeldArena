@@ -1,20 +1,25 @@
 .home{
     height: 100%;
     width: 100%;
+    background-image: url("background/arena.png");
+    background-size: cover;
   }
 
 .side{
-    height: 100%;
     width: 25%;
+    margin: 1rem;
+    border: 5px solid ;
+    border-radius: 0.5rem;
+}
+
+.left{
     background-color: var(--background-color);
+    border-color: var(--border-background);
 }
 
-.left.side{
-    border-right: 3px solid var(--border-background);
-}
-
-.right.side{
-    border-left: 3px solid var(--border-background);
+.right{
+    background-color: var(--battle-history-background);
+    border-color: var(--battle-history-border);
 }
 
 .middle{
@@ -25,15 +30,14 @@
 .middle-upside{
     height: 70%;
     width: 100%;
-    background-image: url("background/arena.png");
-    background-size: cover;
-    position: relative;
 }
 
 .middle-downside{
-    height: 30%;
-    width: 100%;
-    border-top: 3px solid var(--border-background);
-    background-color: var(--background-color);
+    height: 25%;
+    margin: 1rem;
+    border: 5px solid var(--equipment-border);
+    background-color: var(--equipment-background);
+    border-radius: 0.5rem;
+
 }
 
