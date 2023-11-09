@@ -9,6 +9,7 @@ class CreateBattleCharacters < ActiveRecord::Migration[7.0]
       t.float :miss_rate, null: false
       t.float :critical_hit_rate, null: false
       t.float :critical_hit_multiplier, null: false
+      t.integer :experience_gained, default: 0, null: false
       
       t.references :character, null: false, foreign_key: true
       t.references :battle, null: false, foreign_key: true

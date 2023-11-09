@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_090048) do
     t.float "miss_rate", null: false
     t.float "critical_hit_rate", null: false
     t.float "critical_hit_multiplier", null: false
+    t.integer "experience_gained", default: 0, null: false
     t.integer "character_id", null: false
     t.integer "battle_id", null: false
     t.datetime "created_at", null: false
