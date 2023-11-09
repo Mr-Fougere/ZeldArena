@@ -113,7 +113,7 @@ export default class extends Controller {
     for (let i = 0; i < formElements.length; i++) {
       const element = formElements[i];
 
-      if (element.type !== "button" && element.type !== "submit") {
+      if (element.id.includes("character_id")) {
         if (element.value.trim() === "") {
           isValid = false;
           break;

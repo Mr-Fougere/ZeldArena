@@ -13,8 +13,9 @@ class BattlesController < ApplicationController
   end
 
   def create
+    clean_up_params
     battle = Battle.new(battle_params)
-    BattleSimulator.new(battle: battle).perform if battle.save
+    BattleSimulator.new(battle: battle).perform if battle.save!
     render turbo_stream: [add_battle_to_battle_history(battle), update_character_profiles(battle)].flatten
   end
 
@@ -23,6 +24,16 @@ class BattlesController < ApplicationController
   end
 
   private
+
+  def clean_up_params
+    if params[:battle][:battle_characters_attributes]
+      params[:battle][:battle_characters_attributes].each do |key, value|
+        if value[:battle_character_equipments_attributes]
+          value[:battle_character_equipments_attributes].delete_if { |k, v| v[:equipment_id].blank? }
+        end
+      end
+    end
+  end
 
   def battle_params
     params.require(:battle).permit(:name, battle_characters_attributes: [:id, :character_id,
