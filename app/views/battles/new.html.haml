@@ -9,4 +9,4 @@
             = render "elements/versus"
             = render "battle_character", key: 1
             = render "battle_character", key: 2
-        = form.submit "Start Battle", class: "start-battle-button", disabled: true
+        = form.submit "Start Battle", class: "start-battle-button",data:{target: "drag_drop.submitButtom",action: "click->drag_drop#toggleSubmitButton"}, disabled: true

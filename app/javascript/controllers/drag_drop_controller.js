@@ -8,6 +8,7 @@ export default class extends Controller {
     "equipment",
     "characterSlot",
     "equipmentSlot",
+    "submitButton",
     "arenaForm",
   ];
 
@@ -143,6 +144,12 @@ export default class extends Controller {
 
     this.isMouseDown = true;
     this.createDuplicateElement(event, "equipment");
+  }
+
+
+  toggleSubmitButton(event) {
+    if(event.target.disabled) return;
+    this.arenaFormTarget.querySelector(".start-battle-button").value = "Battle in progress ..."
   }
 
   createDuplicateElement(event, type) {
