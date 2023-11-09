@@ -18,7 +18,7 @@ class Character < ApplicationRecord
   scope :balanced, -> { filter { |character| character.character_balance == :balanced } }
 
   def death_rate
-    battles.empty? ? 0 : ((1- win_count.to_f / battles.uniq.count ).round(2) * 100).to_i
+    battles.empty? ? 0 : ((1 - win_count.to_f / battles.uniq.count).round(2) * 100).to_i
   end
 
   def win_count
@@ -40,4 +40,26 @@ class Character < ApplicationRecord
     end
   end
 
+  def current_level_percent
+    ((experience_points.to_f / next_level) * 100).to_i
+  end
+
+  def gain_experience_points(amount)
+    if (experience_points + amount) >= next_level
+      amount -= (next_level - experience_points)
+      self.experience_points = 0
+      self.level += 1
+      self.next_level = (BASE_EXPERIENCE * (GROWTH_FACTOR**level)).to_i
+    else
+      self.experience_points += amount
+      amount = 0
+    end while amount.positive?
+    save
+  end
+
+  private
+
+  def sub_next_level(amount)
+    amount
+  end
 end

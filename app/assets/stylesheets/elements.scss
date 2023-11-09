@@ -74,3 +74,23 @@
     background-color: white;
   }
 }
+
+.progress-bar {
+  width: 90%;
+  height: 0.5rem;
+  background-color: #ccc;
+  position: relative;
+  border-radius: 1rem;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: var(--current-percent);
+    background-color: #3498db;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+  }
+}

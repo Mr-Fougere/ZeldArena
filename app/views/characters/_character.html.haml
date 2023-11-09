@@ -20,8 +20,8 @@
                 .stat-container.horizontal
                     %span.stat-value="#{character.death_rate}%"
                     %img.stat-icon{src: image_path("rip.png"), alt: "speed_icon"}
-            .other-container
-                
+            .other-container.vertical
+                = render "elements/progress_bar", current_percent: character.current_level_percent
             .action-container.vertical
                 = link_to image_tag("delete.png", class: "action-icon"),character_path(character), method: :delete, data: { confirm: "Are you sure?" }
                 = link_to image_tag("edit.png", class: "action-icon"), edit_character_path(character)
