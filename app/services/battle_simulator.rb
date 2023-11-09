@@ -16,6 +16,7 @@ class BattleSimulator
       @ticks += 1
     end
     @battle.winner_update
+    @battle.grant_experience_points
   end
 
   private

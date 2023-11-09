@@ -27,5 +27,7 @@
                 = link_to image_tag("edit.png", class: "action-icon"), edit_character_path(character)
         .profile-container{data:{target: 'drag_drop.character', id: character.id, action: 'mousedown->drag_drop#toggleCharacter'}}
             = image_tag character.profile_picture, class: "character-profile-picture"
+            .level-container
+                %span.level-value= character.level
             .name-container
                 %span= character.name
