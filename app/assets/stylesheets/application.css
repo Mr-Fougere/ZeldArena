@@ -26,6 +26,9 @@
     --stats-background: #564141;
     --character-border: #4B0909;
     --winner-color: #F6AE24;
+    --winner-border: #A4700C;
+    --performance-border: #193053;
+    --performance-background: #154756;
  }
 
  body{

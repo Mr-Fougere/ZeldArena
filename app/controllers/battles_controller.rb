@@ -14,9 +14,9 @@ class BattlesController < ApplicationController
 
   def create
     clean_up_params
-    battle = Battle.new(battle_params)
-    BattleSimulator.new(battle: battle).perform if battle.save!
-    render turbo_stream: [add_battle_to_battle_history(battle), update_character_profiles(battle)].flatten
+    @battle = Battle.new(battle_params)
+    BattleSimulator.new(battle: @battle).perform if @battle.save!
+    render turbo_stream: [add_battle_to_battle_history, update_character_profiles, recap_battle].flatten
   end
 
   def update_ui
@@ -40,16 +40,16 @@ class BattlesController < ApplicationController
                                                                          { battle_character_equipments_attributes: %i[id equipment_id] }])
   end
 
-  def add_battle_to_battle_history(battle)
-    turbo_stream.prepend('battle-history', partial: 'battles/battle', locals: { battle: battle })
+  def add_battle_to_battle_history
+    turbo_stream.prepend('battle-history', partial: 'battles/battle', locals: { battle: @battle })
   end
 
-  def recap_battle(battle)
-    turbo_stream.prepend('battle-history', partial: 'battles/battle', locals: { battle: battle })
+  def recap_battle
+    turbo_stream.replace('arena', partial: 'recap_battle', locals: { battle: @battle })
   end
 
-  def update_character_profiles(battle)
-    battle.battle_characters.map do |character|
+  def update_character_profiles
+    @battle.battle_characters.map do |character|
       update_character_profile(character.character)
     end
   end

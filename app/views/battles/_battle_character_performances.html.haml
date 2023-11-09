@@ -1,0 +1,7 @@
+.performances-container
+  - battle_character.gathering_battle_performances.each do |attribute, value|
+    .performance-container.horizontal
+      %span.performance-value= value > 0 ? value.to_i : 0 
+      - if attribute == "hit_rate" 
+        %span.performance-percents %
+      %img.performance-icon{src: image_path("icons/#{attribute}.png"), alt: "#{attribute}_icon"}

@@ -8,6 +8,6 @@ class Battle < ApplicationRecord
   accepts_nested_attributes_for :battle_characters, allow_destroy: true
 
   def winner_update
-    update(winner_battle_character: battle_actions.last.attacker)
+    update(winner_battle_character: battle_actions.hitted.last.attacker)
   end
 end

@@ -1,0 +1,10 @@
+.battle-character.vertical{class: "#{battle_character.winner? ? "winner" : "loser"}"}
+    .character-profile-container
+        = render "elements/filled_slot", data: battle_character.character
+        - if battle_character.winner?
+            = image_tag "winner.png", class: "winner-icon"
+    .equipments-container.horizontal
+        - battle_character.battle_character_equipments.each do |bce|
+            = render "elements/filled_slot", data: bce.equipment
+    = render "battle_character_performances", battle_character: battle_character
+

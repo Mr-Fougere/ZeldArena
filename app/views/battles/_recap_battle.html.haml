@@ -1,0 +1,8 @@
+= turbo_frame_tag "arena" do
+    .battle-recap.vertical
+        .battle-characters.horizontal
+            = render "elements/versus"
+            - @battle.battle_characters.each do |bc|
+                = render "battles/recap_character", battle_character: bc
+        .battle-actions
+            = link_to "New Battle", new_battle_path, class: "new-battle-button"
