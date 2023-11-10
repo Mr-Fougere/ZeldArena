@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :battles
 
   post 'arena/update_ui', to: 'battles#update_ui'
-
+  post 'next_tutorial_page', to: 'pages#next_tutorial_page', as: 'next_tutorial_page'
 end

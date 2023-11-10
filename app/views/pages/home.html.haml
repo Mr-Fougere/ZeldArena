@@ -14,3 +14,5 @@
   .right.side.vertical
     = render 'elements/title', title: "Battle History"
     = turbo_frame_tag "battle-history", src: battles_path, loading: "lazy"
+  = render 'tutorials/modal', data: @tutorial_data
+

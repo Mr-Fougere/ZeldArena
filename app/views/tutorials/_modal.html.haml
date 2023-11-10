@@ -1,0 +1,14 @@
+= turbo_frame_tag "tutorial-modal" do
+    - if session[:tutorial_page] < 13
+        #hidden-background
+        #tutorial-page.vertical
+            - if data[:title].present?
+                = render 'elements/title', title: data[:title]
+            .content.vertical
+                - if data[:up_text].present?
+                    %p= data[:up_text]
+                - if data[:middle_image].present?
+                    = image_tag "tutorials/#{data[:middle_image]}.png", alt: data[:middle_image]
+                - if data[:down_text].present?
+                    %p= data[:down_text]
+                = button_to data[:button],next_tutorial_page_path, class:"next-page-button"

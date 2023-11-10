@@ -3,6 +3,9 @@
   border-bottom: 3px solid;
   font-size: x-large;
   color: white;
+
+  background-color: var(--border-background);
+  border-bottom-color: var(--border-background);
   &.battle_history {
     background-color: var(--battle-history-border);
     border-bottom-color: var(--battle-history-border);
@@ -10,10 +13,6 @@
   &.equipments {
     background-color: var(--equipment-border);
     border-bottom-color: var(--equipment-border);
-  }
-  &.characters {
-    background-color: var(--border-background);
-    border-bottom-color: var(--border-background);
   }
 }
 
