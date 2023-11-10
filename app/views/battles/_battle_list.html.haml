@@ -1,0 +1,5 @@
+= turbo_frame_tag "battle-history" do
+    -if @battles.empty?
+        = render "battles/empty_battle"
+    -@battles.each do |battle|
+        =render "battles/battle", battle: battle

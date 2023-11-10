@@ -14,7 +14,7 @@ class BattleCharacter < ApplicationRecord
   has_many :defend_actions, class_name: 'BattleAction', foreign_key: 'defender_id', inverse_of: :defender,
                             dependent: :destroy
   has_one :battle_won, class_name: 'Battle', foreign_key: 'winner_battle_character_id',
-                       inverse_of: :winner_battle_character, dependent: :destroy
+                       inverse_of: :winner_battle_character, dependent: :nullify
                        
   accepts_nested_attributes_for :battle_character_equipments, allow_destroy: true
 

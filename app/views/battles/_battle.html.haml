@@ -1,8 +1,9 @@
-.battle-container.horizontal
-  - battle.battle_characters.each do |battle_character|
-    - winner = battle_character == battle.winner_battle_character
-    .battle-character-container{class: "#{winner ? 'winner' : ''}"}
-      = render "elements/filled_slot" , data: battle_character.character
-      - if winner
-        = image_tag "winner.png", class: "winner-icon"
-  = image_tag "background/versus.png", class: "versus-icon"
+= turbo_frame_tag "battle-#{battle.id}" do
+  .battle-container.horizontal
+    - battle.battle_characters.each do |battle_character|
+      - winner = battle_character == battle.winner_battle_character
+      .battle-character-container{class: "#{winner ? 'winner' : ''}"}
+        = render "elements/filled_slot" , data: battle_character.character
+        - if winner
+          = image_tag "winner.png", class: "winner-icon"
+    = image_tag "background/versus.png", class: "versus-icon"

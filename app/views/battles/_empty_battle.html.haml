@@ -1,0 +1,7 @@
+= turbo_frame_tag "battle-#{Battle.last.id + 1}" do
+    .battle-container.horizontal
+        .battle-character-container
+            = render "elements/empty_slot" , image: "empty_pp", classes:""
+        .battle-character-container
+            = render "elements/empty_slot" , image: "empty_pp", classes:""
+        = image_tag "background/versus.png", class: "versus-icon"

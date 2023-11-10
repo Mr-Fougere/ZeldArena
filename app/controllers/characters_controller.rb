@@ -11,8 +11,11 @@ class CharactersController < ApplicationController
 
   def destroy
     character = Character.find(params[:id])
+    battle_ids = character.battles.pluck(:id)
     character.destroy
-    render turbo_stream: delete_character(character)
+    Battle.find(battle_ids).each(&:hidden!)
+    @battles = Battle.finished.order(created_at: :desc).first(10) unless battle_ids.empty?
+    render turbo_stream: [delete_character(character), update_battle_list]
   end
 
   def update
@@ -30,6 +33,10 @@ class CharactersController < ApplicationController
   end
 
   private
+
+  def update_battle_list
+    turbo_stream.update('battle-history', partial: 'battles/battle_list')
+  end
 
   def update_character(character)
     turbo_stream.replace("character-#{character.id}", partial: 'character', locals: { character: character })

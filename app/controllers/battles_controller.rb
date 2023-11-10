@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class BattlesController < ApplicationController
   def index
-    @battles = Battle.finished.order(created_at: :desc).last(10)
+    @battles = Battle.finished.order(created_at: :desc).first(10)
   end
 
   def new

@@ -1,5 +1,5 @@
 class Battle < ApplicationRecord
-  enum status: { pending: 0, ongoing: 1, finished: 2 }
+  enum status: { hidden: -1, pending: 0, ongoing: 1, finished: 2 }
 
   WINNER_EXPERIENCE = 10
   CRITICAL_HIT_EXPERIENCE = 5
@@ -12,7 +12,8 @@ class Battle < ApplicationRecord
   accepts_nested_attributes_for :battle_characters, allow_destroy: true
 
   def winner_update
-    update(winner_battle_character: battle_actions.hitted.last.attacker)
+    alive_characters = battle_characters.where('health_points > ?', 0)
+    update(winner_battle_character: alive_characters.first) if alive_characters.count == 1
   end
 
   def grant_experience_points
@@ -25,7 +26,7 @@ class Battle < ApplicationRecord
 
   def evaluate_gain_experience(battle_character)
     amount = 0
-    amount += 10 * battle_character.character.level if battle_character.winner?
+    amount += 10 * battle_character.character.level * (battle_character.winner? ? 1 : 0.2)
     amount += battle_character.attack_actions.critical_hit.count * CRITICAL_HIT_EXPERIENCE * battle_character.character.level
     amount += battle_character.defend_actions.dodged.count * DODGE_EXPERIENCE * battle_character.character.level
   end

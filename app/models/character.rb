@@ -2,6 +2,8 @@
 class Character < ApplicationRecord
   BASE_EXPERIENCE = 10
   GROWTH_FACTOR = 1.5
+  INCREASABLE_STATS = %i[critical_hit_rate critical_hit_multiplier dodge_rate miss_rate].freeze
+  INCREASE_AMOUNT = 0.1
 
   has_one_attached :profile_picture
 
@@ -45,21 +47,29 @@ class Character < ApplicationRecord
   end
 
   def gain_experience_points(amount)
-    if (experience_points + amount) >= next_level
-      amount -= (next_level - experience_points)
-      self.experience_points = 0
-      self.level += 1
-      self.next_level = (BASE_EXPERIENCE * (GROWTH_FACTOR**level)).to_i
-    else
-      self.experience_points += amount
-      amount = 0
-    end while amount.positive?
+    amount = sub_next_level(amount) while amount.positive?
     save
   end
 
   private
 
   def sub_next_level(amount)
+    if (experience_points + amount) >= next_level
+      amount -= (next_level - experience_points)
+      self.experience_points = 0
+      self.level += 1
+      increase_random_stat
+      self.next_level = (BASE_EXPERIENCE * (GROWTH_FACTOR**(level - 1))).to_i
+    else
+      self.experience_points += amount
+      amount = 0
+    end
     amount
+  end
+
+  def increase_random_stat
+    increased_stat = INCREASABLE_STATS.sample
+    increased_stat = INCREASABLE_STATS.sample while self[increased_stat] == 100 || self[increased_stat] == 0
+    self[increased_stat] += increased_stat == 'miss_rate' ? -INCREASE_AMOUNT : INCREASE_AMOUNT
   end
 end
