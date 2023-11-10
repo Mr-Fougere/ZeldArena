@@ -1,4 +1,4 @@
-= turbo_frame_tag "battle-#{Battle.last.id + 1}" do
+= turbo_frame_tag "battle-#{Battle.last ? Battle.last.id + 1 : 1 }" do
     .battle-container.horizontal
         .battle-character-container
             = render "elements/empty_slot" , image: "empty_pp", classes:""
