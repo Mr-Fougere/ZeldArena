@@ -9,7 +9,8 @@ class PagesController < ApplicationController
 
   def next_tutorial_page
     session[:tutorial_page] += 1
-    render turbo_stream: render_tutorial_modal
+    return render turbo_stream: render_tutorial_modal if session[:tutorial_page] < 13
+    render turbo_stream: destroy_tutorial_page
   end
 
   private
@@ -18,4 +19,9 @@ class PagesController < ApplicationController
     turbo_stream.replace('tutorial-modal', partial: 'tutorials/modal',
                                           locals: { data: retrieve_data(session[:tutorial_page]) })
   end
+
+  def destroy_tutorial_page
+    turbo_stream.remove('tutorial-modal')
+  end
+
 end
