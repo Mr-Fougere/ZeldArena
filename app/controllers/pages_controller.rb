@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   def home
     session[:tutorial_page] = 0 unless session[:tutorial_page]
-    @tutorial_data = retrieve_data(session[:tutorial_page]) 
+    @tutorial_data = retrieve_data(session[:tutorial_page]) if session[:tutorial_page] < 13
   end
 
   def next_tutorial_page
