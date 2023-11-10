@@ -14,9 +14,9 @@
       .stat-container.horizontal
         = form.number_field :speed, in: 0.5..5.00, step: 0.1 , placeholder: "SPD",required: true
         %img.stat-icon{src: image_path("speed.png"), alt: "speed_icon"}
-    .other-container
-      = form.submit "Save"
-      = link_to "Cancel", characters_path, class: "btn btn-danger"
+    .other-container.horizontal
+      = form.submit "Save", class: "character-action-button save"
+      = link_to "Cancel", characters_path, class: "character-action-button cancel"
 
   .profile-container
     = form.file_field :profile_picture, id: "profile-picture-edit"
